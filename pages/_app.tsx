@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Link from "next/link";
 import localFont from "next/font/local";
+import { useRouter } from "next/router";
 
 const whitney = localFont({
   src: [
@@ -38,15 +39,33 @@ const ginto = localFont({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const isHome = router.pathname === "/";
   return (
     <main className={`${whitney.variable} font-sans ${ginto.variable}`}>
       <div className="flex text-gray-100 h-screen">
         <div className="bg-gray-900 p-3 space-y-2 overflow-y-scroll">
-          <Link
-            href="/"
-            className="h-12 w-12 rounded-[50%] hover:rounded-2xl flex items-center justify-center text-gray-100 hover:text-white hover:bg-brand bg-gray-700 transition-all duration-200"
-          >
-            <DiscordIcon className="h-5 w-7" />
+          <Link href="/" className="relative group">
+            <div className="absolute -left-3 flex h-full items-center">
+              <div
+                className={`bg-white w-1 rounded-r transition-all duration-200 origin-left ${
+                  isHome
+                    ? "h-10"
+                    : "h-4 scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100"
+                }`}
+              />
+            </div>
+            <div className="group-active:translate-y-px">
+              <div
+                className={`h-12 w-12 rounded-[50%] flex items-center justify-center text-gray-100 bg-gray-700 transition-all duration-200  ${
+                  isHome
+                    ? "text-white bg-brand rounded-2xl"
+                    : "group-hover:text-white group-hover:bg-brand group-hover:rounded-2xl"
+                }`}
+              >
+                <DiscordIcon className="h-5 w-7" />
+              </div>
+            </div>
           </Link>
           <Link
             href="/servers/1"
