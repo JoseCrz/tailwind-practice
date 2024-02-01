@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-whitney)"],
+        title: ["var(--font-ginto)"],
+      },
       colors: {
         gray: {
           50: "#ECEDEE",
