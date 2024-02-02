@@ -13,7 +13,6 @@ const config: Config = {
         title: ["var(--font-ginto)"],
       },
       colors: {
-        brand: "#5865F2",
         gray: {
           50: "#ECEDEE",
           100: "#DCDDDE",
@@ -26,6 +25,7 @@ const config: Config = {
           800: "#2F3136",
           900: "#202225",
         },
+        brand: "#5865F2",
       },
     },
   },
