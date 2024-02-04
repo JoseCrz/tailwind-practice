@@ -1,9 +1,20 @@
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as Icons from "@/components/icons";
 import data from "@/mocks/data.json";
 
 export default function Server1() {
+  const [closedCategories, setClosedCategories] = useState<number[]>([]);
+
+  function toggleCategory(categoryId: number) {
+    setClosedCategories((prevClosedCategories) =>
+      prevClosedCategories.includes(categoryId)
+        ? closedCategories.filter((id) => id !== categoryId)
+        : [...prevClosedCategories, categoryId]
+    );
+  }
+
   return (
     <>
       <div className="bg-gray-800 w-60 flex flex-col">
@@ -16,21 +27,39 @@ export default function Server1() {
           <Icons.Chevron className="h-[18px] w-[18px] ml-auto opacity-80" />
         </button>
         <div className="flex-1 overflow-y-scroll font-medium text-gray-300 pt-3 space-y-[21px]">
-          {data[1].categories.map((category) => (
-            <div key={category.id}>
-              {category.label && (
-                <button className="flex items-center px-0.5 text-xs uppercase font-title tracking-wide hover:text-gray-100 w-full">
-                  <Icons.Arrow className="w-3 h-3 mr-0.5" />
-                  {category.label}
-                </button>
-              )}
-              <div key={category.id} className="mt-[5px] space-y-0.5">
-                {category.channels.map((channel) => (
-                  <ChannelLink key={channel.id} channel={channel} />
-                ))}
+          {data[1].categories.map((category) => {
+            const isClosed = closedCategories.includes(category.id);
+            return (
+              <div key={category.id}>
+                {category.label && (
+                  <button
+                    onClick={() => toggleCategory(category.id)}
+                    className="flex items-center px-0.5 text-xs uppercase font-title tracking-wide hover:text-gray-100 w-full"
+                  >
+                    <Icons.Arrow
+                      className={`w-3 h-3 mr-0.5 transition duration-200 ${
+                        isClosed ? "-rotate-90" : ""
+                      }`}
+                    />
+                    {category.label}
+                  </button>
+                )}
+                <div key={category.id} className="mt-[5px] space-y-0.5">
+                  {category.channels
+                    .filter((channel: Channel) => {
+                      const categoryisOpen = !closedCategories.includes(
+                        category.id
+                      );
+
+                      return categoryisOpen || channel.unread;
+                    })
+                    .map((channel) => (
+                      <ChannelLink key={channel.id} channel={channel} />
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       <div className="bg-gray-700 flex-1 flex flex-col">
