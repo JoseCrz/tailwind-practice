@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-export function DiscordIcon(props: SVGProps<SVGSVGElement>) {
+export function Discord(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>
       <path
@@ -11,7 +11,7 @@ export function DiscordIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function VerifiedIcon(props: SVGProps<SVGSVGElement>) {
+export function Verified(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-label="Verified"
@@ -28,7 +28,7 @@ export function VerifiedIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function CheckIcon(props: SVGProps<SVGSVGElement>) {
+export function Check(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="false" viewBox="0 0 16 15.2" {...props}>
       <path
@@ -39,7 +39,7 @@ export function CheckIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function ChevronIcon(props: SVGProps<SVGSVGElement>) {
+export function Chevron(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 18 18" fill="none" {...props}>
       <path
@@ -50,7 +50,7 @@ export function ChevronIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function BookIcon(props: SVGProps<SVGSVGElement>) {
+export function Book(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 40 40" {...props}>
       <path
@@ -63,7 +63,7 @@ export function BookIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function SpeakerphoneIcon(props: SVGProps<SVGSVGElement>) {
+export function Speakerphone(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
@@ -74,7 +74,7 @@ export function SpeakerphoneIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function ArrowComponent(props: SVGProps<SVGSVGElement>) {
+export function Arrow(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
@@ -87,7 +87,7 @@ export function ArrowComponent(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function AddPersonIcon(props: SVGProps<SVGSVGElement>) {
+export function AddPerson(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 16 16" {...props}>
       <path
@@ -98,7 +98,7 @@ export function AddPersonIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function HashtagIcon(props: SVGProps<SVGSVGElement>) {
+export function Hashtag(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
