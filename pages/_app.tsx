@@ -46,16 +46,22 @@ const servers = [
 ];
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
     <main className={`${whitney.variable} font-sans ${ginto.variable}`}>
       <div className="flex text-gray-100 h-screen">
         <div className="bg-gray-900 p-3 flex flex-col gap-2 overflow-y-scroll">
-          <NavLink href="/">
+          <NavLink href="/" isActive={router.asPath === "/"}>
             <DiscordIcon className="h-5 w-7" />
           </NavLink>
           <hr className="border-t-white/[.06] border-t-2 rounded mx-2" />
           {servers.map((server) => (
-            <NavLink key={server.id} href={`/servers/${server.id}`}>
+            <NavLink
+              key={server.id}
+              href={`/servers/${server.id}/channel/1`}
+              isActive={Number(router.query.serverId) === server.id}
+            >
               <Image
                 src={`/servers/${server.img}`}
                 alt={`${server.name} logo`}
@@ -82,11 +88,11 @@ function DiscordIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function NavLink({ href, children }: PropsWithChildren<{ href: string }>) {
-  const router = useRouter();
-
-  const isActive = router.asPath === href;
-
+function NavLink({
+  href,
+  isActive,
+  children,
+}: PropsWithChildren<{ href: string; isActive: boolean }>) {
   return (
     <Link href={href} className="relative group">
       <div className="absolute -left-3 flex h-full items-center">
