@@ -1,9 +1,8 @@
 import Link from "next/link";
-
+import { useRouter } from "next/router";
 import * as Icons from "@/components/icons";
-
 import data from "@/mocks/data.json";
-import { Fragment } from "react";
+
 export default function Server1() {
   return (
     <>
@@ -51,6 +50,7 @@ export default function Server1() {
 type Channel = (typeof data)["1"]["categories"][number]["channels"][number];
 
 function ChannelLink({ channel }: { channel: Channel }) {
+  const router = useRouter();
   const Icon = (() => {
     if ("icon" in channel) {
       //@ts-ignore
@@ -59,10 +59,16 @@ function ChannelLink({ channel }: { channel: Channel }) {
 
     return Icons.Hashtag;
   })();
+
+  const isActive = channel.id === Number(router.query.channelId);
   return (
     <Link
-      href="#"
-      className="flex items-center px-2 py-1 mx-2 group  text-gray-300 hover:text-gray-100 hover:bg-gray-550/[.16] rounded"
+      href={`/servers/1/channel/${channel.id}`}
+      className={`flex items-center px-2 py-1 mx-2 rounded group ${
+        isActive
+          ? "text-white bg-gray-550/[0.32] "
+          : "text-gray-300 hover:bg-gray-550/[.16] hover:text-gray-100"
+      }`}
     >
       <Icon className="w-5 h-5 mr-1.5 text-gray-400" />
       {channel.label}
