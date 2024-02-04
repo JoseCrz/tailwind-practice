@@ -47,13 +47,28 @@ export default function Server1() {
   );
 }
 
-type Channel = (typeof data)["1"]["categories"][number]["channels"][number];
+type Channel = {
+  id: number;
+  label: string;
+  icon?: string;
+  unread?: boolean;
+};
+
+type ChannelLinkState = "active" | "inactiveUnread" | "inactiveRead";
+
+const classes: Record<ChannelLinkState, string> = {
+  active: "text-white bg-gray-550/[0.32]",
+  inactiveUnread:
+    "text-white hover:bg-gray-550/[.16] active:bg-gray-550/[0.24]",
+  inactiveRead:
+    "text-gray-300 hover:bg-gray-550/[.16] hover:text-gray-100 active:bg-gray-550/[0.24]",
+};
 
 function ChannelLink({ channel }: { channel: Channel }) {
   const router = useRouter();
   const Icon = (() => {
-    if ("icon" in channel) {
-      //@ts-ignore
+    if (channel.icon) {
+      // @ts-ignore
       return Icons[channel.icon];
     }
 
@@ -61,15 +76,21 @@ function ChannelLink({ channel }: { channel: Channel }) {
   })();
 
   const isActive = channel.id === Number(router.query.channelId);
+
+  const state: ChannelLinkState = isActive
+    ? "active"
+    : channel.unread
+    ? "inactiveUnread"
+    : "inactiveRead";
+
   return (
     <Link
       href={`/servers/1/channel/${channel.id}`}
-      className={`flex items-center px-2 py-1 mx-2 rounded group ${
-        isActive
-          ? "text-white bg-gray-550/[0.32] "
-          : "text-gray-300 hover:bg-gray-550/[.16] hover:text-gray-100"
-      }`}
+      className={`flex items-center px-2 py-1 mx-2 rounded group relative ${classes[state]}`}
     >
+      {state === "inactiveUnread" && (
+        <div className="absolute left-0 -mx-2 w-1 h-2 rounded-r-full bg-white" />
+      )}
       <Icon className="w-5 h-5 mr-1.5 text-gray-400" />
       {channel.label}
       <Icons.AddPerson className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 text-gray-200 hover:text-gray-100" />
