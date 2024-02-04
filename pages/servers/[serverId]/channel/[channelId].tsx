@@ -19,7 +19,7 @@ export default function Server1() {
           {data[1].categories.map((category) => (
             <div key={category.id}>
               {category.label && (
-                <button className="flex items-center px-0.5 text-xs uppercase font-title tracking-wide">
+                <button className="flex items-center px-0.5 text-xs uppercase font-title tracking-wide hover:text-gray-100 w-full">
                   <Icons.Arrow className="w-3 h-3 mr-0.5" />
                   {category.label}
                 </button>
