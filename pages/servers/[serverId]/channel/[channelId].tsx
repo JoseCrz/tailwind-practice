@@ -74,7 +74,31 @@ export default function Server1() {
       </div>
       <div className="bg-gray-700 flex-1 flex flex-col">
         <div className="px-3 h-12 flex items-center shadow-sm">
-          {channel?.label}
+          <div className="flex items-center">
+            <Icons.Hashtag className="mx-2 h-6 w-6 font-semibold text-gray-400" />
+            <span className="font-title mr-2 text-white">{channel?.label}</span>
+          </div>
+
+          <div className="ml-auto flex items-center">
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.HashtagWithSpeechBubble className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.Bell className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.Pin className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.People className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.Inbox className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.QuestionCircle className="mx-2 h-6 w-6" />
+            </button>
+          </div>
         </div>
         <div className="p-3 flex-1 overflow-y-scroll space-y-4">
           {[...Array(40)].map((_, index) => (
