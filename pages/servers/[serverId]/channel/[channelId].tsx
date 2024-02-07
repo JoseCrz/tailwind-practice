@@ -2,9 +2,19 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as Icons from "@/components/icons";
-import data from "@/mocks/data.json";
+import { data } from "@/mocks/data";
 
 export default function Server1() {
+  let router = useRouter();
+
+  const serverId = Number(router.query.serverId) as keyof typeof data;
+
+  let server = data[serverId];
+  let channel = server.categories
+    .map((c) => c.channels)
+    .flat()
+    .find((channel) => +channel.id === +router.query.channelId!);
+
   const [closedCategories, setClosedCategories] = useState<number[]>([]);
 
   function toggleCategory(categoryId: number) {
@@ -63,7 +73,9 @@ export default function Server1() {
         </div>
       </div>
       <div className="bg-gray-700 flex-1 flex flex-col">
-        <div className="px-3 h-12 flex items-center shadow-sm">#general</div>
+        <div className="px-3 h-12 flex items-center shadow-sm">
+          {channel?.label}
+        </div>
         <div className="p-3 flex-1 overflow-y-scroll space-y-4">
           {[...Array(40)].map((_, index) => (
             <p key={index}>
