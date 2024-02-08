@@ -72,12 +72,23 @@ export default function Server1() {
           })}
         </div>
       </div>
-      <div className="bg-gray-700 flex-1 flex flex-col">
+      <div className="bg-gray-700 flex-1 flex-shrink min-w-0 flex flex-col">
         <div className="px-3 h-12 flex items-center shadow-sm">
           <div className="flex items-center">
             <Icons.Hashtag className="mx-2 h-6 w-6 font-semibold text-gray-400" />
             <span className="font-title mr-2 text-white">{channel?.label}</span>
           </div>
+
+          {/* @ts-ignore */}
+          {channel.description && (
+            <>
+              <div className="mx-2 h-6 w-px bg-white/[0.06]" />
+              <div className="mx-2 text-sm truncate font-medium text-gray-200">
+                {/* @ts-ignore */}
+                {channel.description}
+              </div>
+            </>
+          )}
 
           <div className="ml-auto flex items-center">
             <button className="text-gray-200 hover:text-gray-100">
