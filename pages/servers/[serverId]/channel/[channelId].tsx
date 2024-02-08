@@ -76,7 +76,9 @@ export default function Server1() {
         <div className="px-3 h-12 flex items-center shadow-sm">
           <div className="flex items-center">
             <Icons.Hashtag className="mx-2 h-6 w-6 font-semibold text-gray-400" />
-            <span className="font-title mr-2 text-white">{channel?.label}</span>
+            <span className="font-title mr-2 text-white text-nowrap">
+              {channel?.label}
+            </span>
           </div>
 
           {/* @ts-ignore */}
@@ -103,6 +105,16 @@ export default function Server1() {
             <button className="text-gray-200 hover:text-gray-100">
               <Icons.People className="mx-2 h-6 w-6" />
             </button>
+            <div className="relative mx-2">
+              <input
+                type="text"
+                placeholder="Search"
+                className="bg-gray-900 placeholder-gray-400 text-sm font-medium px-1.5 h-6 w-36 border-none rounded"
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center ">
+                <Icons.Spyglass className="w-4 h-4 mr-1.5 text-gray-400" />
+              </div>
+            </div>
             <button className="text-gray-200 hover:text-gray-100">
               <Icons.Inbox className="mx-2 h-6 w-6" />
             </button>
